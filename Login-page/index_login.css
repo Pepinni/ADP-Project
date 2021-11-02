@@ -9,7 +9,7 @@ body {
   }
   
   .container {
-      padding: 110px;
+      bottom: 100x;
   }
   ::placeholder { 
       color: #ffffff!important;
@@ -54,7 +54,8 @@ body {
       border-radius: 10px;
   }
   .text-white{
-      color: white!important;
+    font-size: 60px;  
+    color: white!important;
   }
   .wrapper {
       text-align: center;
@@ -62,3 +63,29 @@ body {
   .footer p{
       font-size: 18px;
   }
+
+  
+.label
+{
+    width: 100px;
+}
+
+.alert
+{
+    display: none;
+}
+
+.requirements
+{
+    list-style-type: none;
+}
+
+.wrong .fa-check
+{
+    display: none;
+}
+
+.good .fa-times
+{
+    display: none;
+}
