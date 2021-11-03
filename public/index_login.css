@@ -41,6 +41,11 @@ body {
    border-bottom-width:1px;
    padding-bottom:10px;
    text-align: center;
+}
+h5{
+    font-size: 2px;
+    text-align: center;
+
   }
   .box{  
       text-align: center;
