@@ -53,36 +53,36 @@ const User = mongoose.model("User", userSchema);
 ///////////////////////////////////////////////////////////////////
 
 app.get("/", function (req, res) {
-  res.render("index_login.ejs");
+  res.render("index_login.ejs", {msg:""});
 });
 
-app.post("/register", function (req, res) {
-  var name = req.body.userName;
-  var pwd = req.body.password;
+// app.post("/register", function (req, res) {
+//   var name = req.body.userName;
+//   var pwd = req.body.password;
 
-  const newUser = new User({
-    userName: name,
-    password: pwd,
-    // img : Binary(req.body.file)
-  });
-  User.find({ userName: name }, function (err, found) {
-    if (err) {
-      console.log(err);
-    } else {
-      if (found.length === 1) {
-        res.render("login");
-      } else {
-        newUser.save(function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("User Created");
-          }
-        });
-      }
-    }
-  });
-});
+//   const newUser = new User({
+//     userName: name,
+//     password: pwd,
+//     // img : Binary(req.body.file)
+//   });
+//   User.find({ userName: name }, function (err, found) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       if (found.length === 1) {
+//         res.render("login");
+//       } else {
+//         newUser.save(function (err) {
+//           if (err) {
+//             console.log(err);
+//           } else {
+//             console.log("User Created");
+//           }
+//         });
+//       }
+//     }
+//   });
+// });
 app.post("/login", function (req, res) {
   var uName = req.body.email;
   var pwd = req.body.password;
@@ -99,10 +99,12 @@ app.post("/login", function (req, res) {
         // res.render("form.ejs");
         if (foundUser[0].password === pwd) {
           console.log("Password matches and he will be logged in");
+          res.render("request.ejs");
         } 
         else {
             console.log(foundUser);
           console.log("The password is a mismatch");
+          res.render("index_login.ejs", {msg:"The password is incorrect!"})
         }
       } 
       else {
@@ -114,6 +116,7 @@ app.post("/login", function (req, res) {
                   console.log("New User created");
               }
           });
+          res.render("request.ejs")
       }
     }
   });
