@@ -2,6 +2,7 @@ body {
     background-image:url('https://qphs.fs.quoracdn.net/main-qimg-bd48828b961d324b5f901f96bb56e06b-c');
     background-position:center;
     background-size:cover;
+    background-repeat: no-repeat;
     
     -webkit-font-smoothing: antialiased;
     font: normal 14px Bebas Neue, Roboto,arial,sans-serif;
@@ -9,7 +10,8 @@ body {
   }
   
   .container {
-      bottom: 100x;
+      padding: 0px;
+      /* bottom: 50px; */
   }
   ::placeholder { 
       color: #ffffff!important;
@@ -41,14 +43,6 @@ body {
    border-bottom-width:1px;
    padding-bottom:10px;
    text-align: center;
-}
-h5{
-    font-size: 2px;
-    text-align: center;
-    color:red;
-  }
-  .incorrect{
-      color:red;
   }
   .box{  
       text-align: center;
@@ -96,4 +90,11 @@ h5{
 .good .fa-times
 {
     display: none;
+}
+#psw{
+    width: 250px;
+    padding: 10px !important;
+}
+ul{
+    padding-inline-start: 0px !important;
 }
