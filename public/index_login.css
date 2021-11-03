@@ -45,7 +45,10 @@ body {
 h5{
     font-size: 2px;
     text-align: center;
-
+    color:red;
+  }
+  .incorrect{
+      color:red;
   }
   .box{  
       text-align: center;
