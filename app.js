@@ -119,6 +119,11 @@ app.post("/login", function (req, res) {
   });
 });
 
+app.post('/submit', function(req, res) {
+    console.log(req.body);
+});
+
+
 // The server will listen on port 3000
 app.listen(3000, function () {
   console.log("Server running on port 3000");
