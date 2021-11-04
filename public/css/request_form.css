@@ -1,55 +1,49 @@
-* {
-	margin: 0px; 
-	padding: 0px; 
+* { 
 	box-sizing: border-box;
 }
+
 body{
     /* background-color: rgb(186, 255, 232); */
     background-image: linear-gradient(rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27)), url('../images/campus.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% 100%;
+    background-position: center;
+    background-size: cover;
 }
 
 .form-heading{
     font-family: 'Epilogue', sans-serif;
-    font-size: 54px;
     color: rgb(2, 78, 139);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.container-outer{
-    width: 60%;
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    padding: 140px;
+#iitm-logo {
+    display: inline-block;
+    height: 100px;
+}
+
+#form-outer{
     border-radius: 40px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255) ;
     box-shadow: 0px 0px 35px rgb(112, 112, 112);
 }
 
 .form-control{
-    border-radius: 20px;
-    min-height: 50px;
-    font-family: 'Epilogue', sans-serif;
-    font-size: 21px;
-    padding: 15px;
-    border-color: #fff;
+    border-radius: 12px;
+    /* border-color: #fff; */
     box-shadow: 0px 0px 15px rgb(241, 241, 241);
-    width: 100%;
 }
 .form-control:active{
     box-shadow: 0px 0px 15px rgb(223, 223, 223);
 }
 
-.label-row{
+.form-label{
     font-family: 'Epilogue', sans-serif;
-    margin-top: 25px;
-    margin-bottom: 25px;
 }
 
 input[type="file"]{
-    font-size: 19px;
     color: #5686d3;
 }
 .proof-button {
@@ -57,13 +51,10 @@ input[type="file"]{
     background-color: #7ceec2;
     border-radius: 14px;
     text-align: center;
-    font-size: 20px;
-    padding: 8px;
     transition: all 0.5s;
     cursor: pointer;
     border-style: none;
     box-shadow: 0px 0px 15px rgb(255, 252, 252);
-    margin: 5px;
 }
 .proof-button:hover {
     background-color: #154072;
@@ -76,10 +67,7 @@ input[type="file"]{
     margin: 0 auto;
     width: 50%;
     background-color: #b2ffe1;
-    height: 70px;
     border-radius: 20px;
-    font-size: 26px;
-    padding: 8px;
     transition: all 0.5s;
     cursor: pointer;
     border-style: none;
@@ -94,49 +82,45 @@ input[type="file"]{
     padding: 5px;
 }
 .in-date{
-    width: 200px;
-    border-radius: 20px;
-    min-height: 50px;
     font-family: 'Epilogue', sans-serif;
-    font-size: 21px;
-    padding: 15px;
     border-color: #fff;
     border-style: none;
     box-shadow: 0px 0px 15px rgb(236, 236, 236);
 }
 
-.group-label span{
+.group-label {
+    font-family: 'Epilogue', sans-serif;
+}
+
+/* .group-label span{
     display: inline-block;
     position: relative;
 }
-.group-label span:after {
+.group-label .double-line {
   content: "";
   position: absolute;
+  display: inline-block;
   margin-top: 15px;
   height: 6px;
   border-bottom: 2px solid rgb(218, 235, 64);
   border-top: 2px solid rgb(212, 214, 56);
   top: 0;
-  width: 600px;
+  overflow-y: hidden;
+  overflow-x: clip;
+  width: 100%;
 }
 .group-label span:after {
   left: 100%;
   margin-left: 15px;
-}
+} */
 
-.vac-status{
+#vac-status{
     font-family: 'Epilogue', sans-serif;
-    font-size: 21px;
 }
 
 .form-check-label{
     font-family: 'Epilogue', sans-serif;
-    font-size: 21px;
 }
 .form-check-input{
     display: block;
-}
-
-.hide-items{
-    display: none;
 }

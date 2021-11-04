@@ -18,99 +18,120 @@
 </head>
 
 <body>
-  <div class="container-outer">
-    <form method="post" action="/submit" class="row g-3">
-      <div class="col">
-        <h1 class="form-heading">Campus Return Request</h1>
+  <div class="row container-fluid">
+    <div class="col"><!-- left margin of main content --></div>
+    <div id="form-outer" class="col-md-8 my-5 mx-1 px-4 py-4">
+      <div class="row mx-3 my-3">
+        <div class="col-md-auto px-2 py-2 d-flex justify-content-center">
+          <img src="../public/images/iitm-logo.jpg" alt="IIT Mandi Logo" id="iitm-logo"/>
+        </div>
+        <div class="col px-3 py-2 form-heading ">
+          <h1>Campus Return Request</h1>
+        </div>
       </div>
-      <br />
-      <fieldset>
-        <div class="row g-3 container">
-          <legend class="label-row group-label"><span>Personal Details</span></legend>
-          <div class="col-sm-6 label-row">
-            <label for="fname" class="col-sm-5 col-form-label">First Name<span>*</span></label>
-            <input id="fname" class="form-control" type="text" name="fname" placeholder="First Name" required />
-          </div>
-          <div class="col-sm-6 label-row">
-            <label for="lname" class="col-sm-5 col-form-label"> Last Name<span>*</span></label>
-            <input id="lname" class="form-control" type="text" name="lname" placeholder="Last Name" required />
-          </div>
-          <div class="col-sm-12 label-row">
-            <label for="address" class="col-sm-5 col-form-label">Address<span>*</span></label>
-            <input id="address" class="form-control" type="text" name="address" placeholder="Address" required />
-          </div>
-          <!-- <div>
-            <label for="zip">Zip Code<span>*</span></label>
-            <input id="zip" type="text"   name="zip" required/>
-          </div> -->
-          <div class="col-sm-6 label-row">
-            <label for="city" class="col-sm-5 col-form-label">City<span>*</span></label>
-            <input id="city" class="form-control" type="text" name="city" placeholder="City" required />
-          </div>
-          <div class="col-sm-6 label-row">
-            <label for="state" class="col-sm-5 col-form-label">State<span>*</span></label>
-            <input id="state" class="form-control" type="text" name="state" placeholder="State" required />
-          </div>
-          <div class="col-sm-6 label-row">
-            <label for="eaddress" class="col-sm-5 col-form-label">Email Address<span>*</span></label>
-            <input id="eaddress" class="form-control" type="text" name="eaddress" placeholder="Email Address" required />
-          </div>
-          <div class="col-sm-6 label-row">
-            <label for="phone" class="col-sm-5 col-form-label">Phone<span>*</span></label>
-            <input id="phone" class="form-control" type="tel" name="phone" placeholder="Phone Number" required />
-          </div>
-          <legend class="label-row group-label vac-section"><span>Vaccination Details</span></legend>
-          <div class="vac-status">Please select your vaccination status:</div>
+      <form method="post" action="/submit" class="row g-3 my-1">
+        <fieldset>
+          <div class="row g-3 px-3">
+            
+            <hr/>
+            <legend class="label-row group-label"><span class="h4">Personal Details</span></legend>
+              <!-- <span class="col double-line"></span> -->
+            <div class="col-md-6">
+              <label for="fname" class="form-label">First Name<span>*</span></label>
+              <input id="fname" class="form-control" type="text" name="fname" placeholder="First Name" required />
+            </div>
+            <div class="col-md-6">
+              <label for="lname" class="form-label"> Last Name<span>*</span></label>
+              <input id="lname" class="form-control" type="text" name="lname" placeholder="Last Name" required />
+            </div>
+            <div class="col-sm-12">
+              <label for="address" class="form-label">Address<span>*</span></label>
+              <input id="address" class="form-control" type="text" name="address" placeholder="Address" required />
+            </div>
+            <!-- <div>
+              <label for="zip">Zip Code<span>*</span></label>
+              <input id="zip" type="text"   name="zip" required/>
+            </div> -->
+            <div class="col-sm-6">
+              <label for="city" class="form-label">City<span>*</span></label>
+              <input id="city" class="form-control" type="text" name="city" placeholder="City" required />
+            </div>
+            <div class="col-sm-6">
+              <label for="state" class="form-label">State<span>*</span></label>
+              <input id="state" class="form-control" type="text" name="state" placeholder="State" required />
+            </div>
+            <div class="col-sm-6">
+              <label for="eaddress" class="form-label">Email Address<span>*</span></label>
+              <input id="eaddress" class="form-control" type="text" name="eaddress" placeholder="Email Address" required />
+            </div>
+            <div class="col-sm-6">
+              <label for="phone" class="form-label">Phone<span>*</span></label>
+              <input id="phone" class="form-control" type="tel" name="phone" placeholder="Phone Number" required />
+            </div>
+          </fieldset>
+            
+          <div class="mt-4"><hr/></div>
+          <legend class="label-row group-label"><span class="h4">Vaccination Details</span></legend>
+          <!-- <span class="col double-line"></span> -->
+          <div id="vac-status">Please select your vaccination status:</div>
           <div class="vac-container">
-            <div class="form-check form-check-inline">
-              <input id = "singly" class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
-              <label class="form-check-label" for="inlineRadio1">Singly Vaccinated</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input id="doubly" class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
-              <label class="form-check-label" for="inlineRadio2">Doubly Vaccinated</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option3">
-              <label class="form-check-label" for="inlineRadio3">Not Vaccinated</label>
-            </div>
-            <div class="form-check form-check-inline label-row">
-              <label for="formFile" class="col-sm-2 col-form-label">Proof<span>*</span></label><br>
-              <!-- <label for="formFile" class="proof-button">Choose File</label> -->
-              <input type="file" id="formFile">
-            </div>
-            <div class="hide-items">
-            <div id="div-conditional1" class="form-check form-check-inline label-row">
-              <div class="input-icons">
-                <label for="checkindate">Check-in 'From' <span>*</span></label>
-                <!-- <i class="far fa-calendar"></i> -->
-                <input class="in-date" id="checkindate" type="date" name="checkindate" required />
+            <fieldset>
+              <div class="my-1 px-3">
+                <div class="form-check form-check-inline">
+                  <input id = "singly" class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Singly Vaccinated</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input id="doubly" class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
+                  <label class="form-check-label" for="inlineRadio2">Doubly Vaccinated</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option3">
+                  <label class="form-check-label" for="inlineRadio3">Not Vaccinated</label>
+                </div>
               </div>
-            </div>
-            <div id="div-conditional3" class="form-check form-check-inline label-row">
-              <div class="input-icons">
-                <label for="checkindate">Check-in 'To' <span>*</span></label>
-                <!-- <i class="far fa-calendar"></i> -->
-                <input class="in-date" id="checkindate" type="date" name="checkindate" required />
+              <br/>
+
+              <div class="collapse show px-4" id="vacc-conditional">
+                <div class="my-2">
+                  <label for="formFile" class="form-label">Proof<span>*</span></label><br>
+                  <!-- <label for="formFile" class="proof-button">Choose File</label> -->
+                  <input type="file" id="formFile" class="form-control">
+                </div>
+                <br/>
+                <div class="my-2">
+                  <div class="input-icons">
+                    <label for="checkindate" class="form-label">Date of 1st Dose <span>*</span></label>
+                    <input class="in-date d-inline-block mx-3" id="checkindate" type="date" name="checkindate" required />
+                    <!-- <i class="far fa-calendar"></i> -->
+                  </div>
+                  <div class="input-icons">
+                    <label for="checkindate" class="form-label">Date of 2nd Dose <span>*</span></label>
+                    <input class="in-date d-inline-block mx-3" id="checkindate" type="date" name="checkindate" required />
+                    <!-- <i class="far fa-calendar"></i> -->
+                  </div>
+                </div>
               </div>
-            </div>
+            </fieldset>
           </div>
+          <div class="mt-4"><hr/></div>
+          <div id="div-conditional2" class="px-3">
+            <label class="form-label h4" for="reason">Reasons / Comments</label>
+            <textarea id="reason" class="form-control my-4" rows="3" style="min-height: 200px;" 
+              placeholder="Briefly describe your concerns or requirements, if you have any..."></textarea>
           </div>
-          <div id="div-conditional2" class="form-check form-check-inline label-row hide-items">
-            <label class="col-sm-2 col-form-label" for="reason">Reason<span>*</span></label>
-            <textarea id="reason" class="form-control" rows="3" style="min-height: 200px;"></textarea>
+            
+          <br/>
+          
+          <div class="">
+            <button class="btn submit-btn" type="submit">Submit form</button>
           </div>
-
-      </fieldset>
-      <br/>
-
-      <div class="">
-        <button class="btn submit-btn" type="submit">Submit form</button>
+        </form>
       </div>
-    </form>
-  </div>
-  <!-- js stylesheet -->
-  <script src="../public/js/form.js"></script>
+      <div class="col"><!-- right margin of main content --></div>
+    </div>
+    <!-- js stylesheet -->
+    <script src="../public/js/form.js"></script>
 </body>
 
 </html>
