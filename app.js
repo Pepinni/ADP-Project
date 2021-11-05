@@ -105,22 +105,6 @@ app.post("/login", function (req, res) {
 });
 
 app.post('/submit', function(req, res) {
-  // console.log(req.body);
-  // User.findOneAndUpdate({userName : uName}, {$set : {
-  // password : "abs",
-  // fname : req.body.fname,
-  // lname : req.body.lname,
-  // address : req.body.address,
-  // city : req.body.city,
-  // state : req.body.state,
-  // eaddress : req.body.eaddress,
-  // phone : req.body.phone,
-  // inlineRadioOptions : req.body.inlineRadioOptions,
-  // date1 : req.body.date1,
-  // date2 : req.body.date2,
-  // reason : req.body.reason,
-  // }})
-  // console.log("Updates");
   User.findOne({userName : uName}, function(err, foundUser){
     if(err){
       console.log(err);
@@ -151,7 +135,65 @@ app.post('/submit', function(req, res) {
   // console.log(req.body);
 });
 
+var otp;
+app.post("/reset", function(req,res){
+  async function main() {
+    studentMail = req.body.email;
+    var otp = Math.round(Math.random() * 1000000);
 
+    var msg = `
+      <h3>This is your 6-digit OTP valid only for 10 minutes</h3>
+      <h>${msg}</h>
+    `
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+        user: "piyushverma0007@outlook.com", // generated ethereal user
+        pass: process.env.mailPASS, // generated ethereal password
+    },
+    tls:{
+        rejectUnauthorized:false
+    },
+    });
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+    // from: name+" "+email+' <piyushverma0007@outlook.com>', // sender address
+    from: 'OAS-IITMandi', // sender address
+    to: studentMail, // list of receivers
+    subject: "Password Reset", // Subject line
+    html: msg, // html body
+    });
+
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    return res.render("/pwdreset");
+  }
+  main().catch(console.error);
+})
+
+app.post("/pwdreset", function(req,res){
+  mail = req.body.mail;
+  newPwd = req.body.new;
+  cnf = req.body.cnf;
+  if(newPwd === cnf){
+    User.findOne({userName : mail}, function(err, foundUser){
+      if(err){
+        console.log(err);
+      }
+      else{
+        foundUser.password = newPwd;
+      }
+    });
+    res.render('/');
+  }
+  else{
+    res.redirect("/pwdReset", {msg,msg});
+  }
+})
 // The server will listen on port 3000
 app.listen(3000, function () {
   console.log("Server running on port 3000");
