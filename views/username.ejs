@@ -38,35 +38,16 @@
       <div class="box">
         <h1 class='text-white'>Student Log In</h1>
         <div class="form-login"></br>
-          <h3>Credentials</h3>
-          <h4>Kindly use institute email only.</h4>
+          <h3>Reset Password </h3>
+          <h4>Please enter your email, we will send a confirmation OTP.</h4>
           <!-- <h5 class="incorrect"><%= msg%> </h5>%> -->
           <!--Login Form -->
           <form action="/login" method="POST">
-            <input type="email" id="userName" class="form-control chat-input" placeholder="Email address"
+            <input type="email" id="userName" class="form-control chat-input" placeholder="Email Address"
               name="email" required />
-            <input type="password" id="inputValidationEx2" class="form-control validate" placeholder="Password"
-              name="password" required />
-            <label for="inputValidationEx2" data-error="wrong" data-success="right" style="width:200px;"></label>
-            <div class="col-md-12">
-              <div class="alert alert-warning password-alert" role="alert">
-                <ul>
-                  <li class="requirements leng"><i class="fas fa-check green-text"></i><i
-                      class="fas fa-times red-text"></i> Your password must have at least 8 characters.</li>
-                  <li class="requirements big-letter"><i class="fas fa-check green-text"></i><i
-                      class="fas fa-times red-text"></i> Your password must have at least 1 Capital letter.</li>
-                  <li class="requirements num"><i class="fas fa-check green-text"></i><i
-                      class="fas fa-times red-text"></i> Your password must have at least 1 number.</li>
-                  <li class="requirements special-char"><i class="fas fa-check green-text"></i><i
-                      class="fas fa-times red-text"></i> Your password must have at least 1 special character.</li>
-                </ul>
-              </div>
-            </div>
-
-
             <div class="wrapper">
               <span class="group-btn">
-                <button type="submit" class="btn login-btn"> Log In <i class="fa fa-sign-in"></i></a>
+                <button type="submit" class="btn login-btn"> Send OTP <i class="fa fa-sign-in"></i></a>
               </span>
             </div>
           </form>
