@@ -11,7 +11,8 @@ body {
   }
   
   .container {
-      bottom: 100x;
+      padding: 0px;
+      /* bottom: 50px; */
   }
   ::placeholder { 
       color: #6e6e6e!important;
@@ -63,6 +64,7 @@ h5{
       padding-top: 220px;
       padding-left: 10px;
       padding-right: 10px;
+      padding-bottom: 100px;
       max-width: 450px!important;
       /* left: 37%;
       width: 25%;
