@@ -6,6 +6,7 @@ const ejs = require("ejs");
 const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const env = require("dotenv");
+const multer = require("multer");
 
 // creating an express server
 const app = express();
