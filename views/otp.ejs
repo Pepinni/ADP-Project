@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Campus Returning</title>
-  <link href="../public/index_login.css" rel="stylesheet" id="style">
+  <link href="index_login.css" rel="stylesheet" id="style">
   <!-- Bootstrap core Library -->
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -39,10 +39,10 @@
         <h1 class='text-white'>Student Log In</h1>
         <div class="form-login"></br>
           <h3>Reset Password </h3>
-          <h4>Please enter your email, we will send a confirmation OTP.</h4>
-          <!-- <h5 class="incorrect"><%= msg%> </h5>%> -->
+          <h4>Please enter your registered email</h4>
+          <h5 class="incorrect"><%= msg%> </h5>%>
           <!--Login Form -->
-          <form action="/login" method="POST">
+          <form action="/otp" method="POST">
             <input type="email" id="userName" class="form-control chat-input" placeholder="Email Address"
               name="email" required />
             <div class="wrapper">
@@ -55,7 +55,7 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="../public/index_login.js"></script>
+  <script type="text/javascript" src="index_login.js"></script>
 </body>
 
 </html>
