@@ -16,10 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 // Connecting to 'ADP-Project' datbase
-mongoose.connect("mongodb://localhost:27017/ADP-Project", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://localhost:27017/ADP-Project", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+mongoose.connect(String(process.env.PASS),{ useNewUrlParser: true , useUnifiedTopology: true});
 
 // Creating a database schema
 const userSchema = new mongoose.Schema({
