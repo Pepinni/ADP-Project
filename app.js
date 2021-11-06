@@ -181,7 +181,6 @@ app.post("/otp", function(req,res){
           // send mail with defined transport object
           let info = await transporter.sendMail({
           from: "OAS-IITMandi"+' <piyushverma0007@outlook.com>', // sender address
-          // from: 'OAS-IITMandi', // sender address
           to: studentMail, // list of receivers
           subject: "Reset", // Subject line
           html: msg, // html body
@@ -235,7 +234,7 @@ app.post("/pwdreset", function(req,res){
   }
 })
 // The server will listen on port 3000
-app.listen(3000, function () {
+app.listen(process.env.PORT||3000, function () {
   console.log("Server running on port 3000");
 });
 
