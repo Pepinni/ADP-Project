@@ -34,10 +34,11 @@ var upload = multer({ storage: storage });
 
 
 // Connecting to 'ADP-Project' datbase
-mongoose.connect("mongodb://localhost:27017/ADP-Project", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://localhost:27017/ADP-Project", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+mongoose.connect(String(process.env.PASS),{ useNewUrlParser: true , useUnifiedTopology: true});
 
 
 // Creating a database schema
