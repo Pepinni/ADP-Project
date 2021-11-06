@@ -3,7 +3,9 @@ require("dotenv").config();
 const session = require("express-session");
 const express = require("express");
 const ejs = require("ejs");
+const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
+const env = require("dotenv");
 
 // creating an express server
 const app = express();
@@ -27,8 +29,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   password: {
-    type: String,
-    required: true,
+    type: String
   },
   fname : {type : String, default : ""},
 
@@ -64,6 +65,14 @@ var uName;
 app.get("/", function (req, res) {
   res.render("index_login.ejs", {msg:""});
 });
+
+app.get("/otp", function(req,res){
+  res.render("otp.ejs", {msg:""});
+})
+
+app.get('/reset', function(req,res){
+  res.render('reset.ejs', {msg : ""});
+})
 
 app.post("/login", function (req, res) {
   uName = req.body.email;
@@ -136,62 +145,93 @@ app.post('/submit', function(req, res) {
 });
 
 var otp;
-app.post("/reset", function(req,res){
-  async function main() {
-    studentMail = req.body.email;
-    var otp = Math.round(Math.random() * 1000000);
+app.post("/otp", function(req,res){
 
-    var msg = `
-      <h3>This is your 6-digit OTP valid only for 10 minutes</h3>
-      <h>${msg}</h>
-    `
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-        user: "piyushverma0007@outlook.com", // generated ethereal user
-        pass: process.env.mailPASS, // generated ethereal password
-    },
-    tls:{
-        rejectUnauthorized:false
-    },
-    });
+  studentMail = req.body.email;
+  otp = Math.round(Math.random() * 1000000);
 
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-    // from: name+" "+email+' <piyushverma0007@outlook.com>', // sender address
-    from: 'OAS-IITMandi', // sender address
-    to: studentMail, // list of receivers
-    subject: "Password Reset", // Subject line
-    html: msg, // html body
-    });
+  var msg = `
+    <h3>This is your 6-digit OTP valid only for 10 minutes</h3>
+    <h>${otp}</h>
+  `
 
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    return res.render("/pwdreset");
-  }
-  main().catch(console.error);
+  User.find({userName : studentMail}, function(err, foundUser){
+    if(err){
+      console.log(err);
+    }
+    else{
+      if(foundUser.length === 1){
+        async function main() {
+          // create reusable transporter object using the default SMTP transport
+          let transporter = nodemailer.createTransport({
+          host: "smtp-mail.outlook.com",
+          // host: "smtp.mail.yahoo.com",
+          port: 587,
+          secure: false, // true for 465, false for other ports
+          auth: {
+              user: "piyushverma0007@outlook.com", // generated ethereal user
+              // user: "piyushverma476@yahoo.com", // generated ethereal user
+              pass: process.env.mailPASS, // generated ethereal password
+          },
+          tls:{
+              rejectUnauthorized:false
+          },
+          });
+      
+          // send mail with defined transport object
+          let info = await transporter.sendMail({
+          from: "OAS-IITMandi"+' <piyushverma0007@outlook.com>', // sender address
+          // from: 'OAS-IITMandi', // sender address
+          to: studentMail, // list of receivers
+          subject: "Reset", // Subject line
+          html: msg, // html body
+          });
+      
+          console.log("Message sent: %s", info.messageId);
+          console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+          return res.render("reset.ejs", {msg : ""});
+        }
+        main().catch(console.error);
+      }
+      else{
+        res.render("otp.ejs", {msg: "This email is not registered"});
+      }
+    }
+  })
+
 })
 
 app.post("/pwdreset", function(req,res){
-  mail = req.body.mail;
-  newPwd = req.body.new;
-  cnf = req.body.cnf;
-  if(newPwd === cnf){
-    User.findOne({userName : mail}, function(err, foundUser){
-      if(err){
-        console.log(err);
-      }
-      else{
-        foundUser.password = newPwd;
-      }
-    });
-    res.render('/');
+  const uName = req.body.email
+  var genOTP = req.body.otp;
+  const newPwd = req.body.new;
+  const cnf = req.body.cnf;
+  if(genOTP == otp){
+    if(newPwd === cnf){
+      User.findOne({userName : uName}, function(err, foundUser){
+        if(err){
+          console.log(err);
+        }
+        else{
+          foundUser.password = newPwd;
+          foundUser.save(function(err){
+            if(err){
+              console.log(err);
+            }
+            else{
+              console.log("Password changed succesfully");
+            }
+          })
+        }
+      });
+      res.redirect('/');
+    }
+    else{
+      res.render("otp.ejs", {msg:"The two passwords did not match"});
+    }
   }
   else{
-    res.redirect("/pwdReset", {msg,msg});
+    res.render('reset.ejs', {msg: "Invalid OTP"});
   }
 })
 // The server will listen on port 3000
