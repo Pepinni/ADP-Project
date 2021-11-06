@@ -11,7 +11,8 @@ body {
   }
   
   .container {
-      bottom: 100x;
+      padding: 0px;
+      /* bottom: 50px; */
   }
   ::placeholder { 
       color: #6e6e6e!important;
