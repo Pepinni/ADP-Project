@@ -89,6 +89,12 @@
               </div>
             </div>
         </div>
+        <% if (data.upload != '') { %>
+          <p class="form-label mx-4"> Vaccination Proof </p>
+          <div id="file-div" class="px-3 py-3">
+            <embed type="<%= data.uploadType %>" src="<%= data.upload %>" class="mx-auto d-block"/>
+          </div>
+        <% } %>
         <div class="mt-4"><hr/></div>
         <div id="div-conditional2" class="px-3">
           <label class="form-label h4" for="reason">Reasons / Comments</label>

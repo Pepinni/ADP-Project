@@ -35,7 +35,7 @@
           <h1>Campus Return Request</h1>
         </div>
       </div>
-      <form method="post" action="/submit" class="row g-3 my-1">
+      <form class="row g-3 my-1" method="post" action="/submit" enctype="multipart/form-data">
         <fieldset>
           <div class="row g-3 px-3">
             
@@ -109,7 +109,7 @@
                 <div class="my-2">
                   <label for="formFile" class="form-label">Proof<span class="text-danger">&nbsp;*</span></label><br>
                   <!-- <label for="formFile" class="proof-button">Choose File</label> -->
-                  <input type="file" id="formFile" class="form-control" accept="image/*,application/pdf" required>
+                  <input type="file" name="formFile" id="formFile" class="form-control" accept="image/*,application/pdf" required>
                 </div>
                 <p class="my-1 text-muted form-text"><small>Only a single image or PDF file is accepted, smaller than 10 MB.</small></p>
                 <br/>
