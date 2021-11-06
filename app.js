@@ -6,14 +6,32 @@ const ejs = require("ejs");
 const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const env = require("dotenv");
+const multer = require("multer");
+
 
 // creating an express server
 const app = express();
 
+
 // Setting up the view engine and static locations
 app.use(express.static("public"));
+app.use(express.static("uploaded_docs"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
+
+
+// Configure file storage mechanism from multer
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploaded_docs/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, req.body.eaddress.split('@')[0] + '__' + String(Date.now()) + 
+             '.' + file.mimetype.split('/')[1]);
+  }
+})
+var upload = multer({ storage: storage });
+
 
 // Connecting to 'ADP-Project' datbase
 // mongoose.connect("mongodb://localhost:27017/ADP-Project", {
@@ -21,6 +39,7 @@ app.set("view engine", "ejs");
 //   useUnifiedTopology: true,
 // });
 mongoose.connect(String(process.env.PASS),{ useNewUrlParser: true , useUnifiedTopology: true});
+
 
 // Creating a database schema
 const userSchema = new mongoose.Schema({
@@ -33,31 +52,24 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   fname : {type : String, default : ""},
-
   lname : {type : String, default : ""},
-
   address : {type : String, default : ""},
-
   city : {type : String, default : ""},
-
   state : {type : String, default : ""},
-
   eaddress : {type : String, default : ""},
-
   phone : {type : Number, default : 0},
-
   inlineRadioOptions : {type : String, default : ""},
-
   date1 : {type : Date, default :"2000-11-11"},
-
   date2 : {type : Date, default :"2000-11-11"},
-
   reason : {type : String, default : ""},
+  upload : {type : String, default : ""},
+  uploadType : {type : String, default : ""}
 });
 
 // Creating a collection of Users and creating user strategy for passport
 const User = mongoose.model("User", userSchema);
 var uName;
+
 
 ///////////////////////////////////////////////////////////////////
 /////////// All the access and redirect routes below////////////////
@@ -114,7 +126,7 @@ app.post("/login", function (req, res) {
   });
 });
 
-app.post('/submit', function(req, res) {
+app.post('/submit', upload.single('formFile'), function(req, res) {
   User.findOne({userName : uName}, function(err, foundUser){
     if(err){
       console.log(err);
@@ -131,6 +143,10 @@ app.post('/submit', function(req, res) {
       foundUser.date1 = req.body.date1;
       foundUser.date2 = req.body.date2;
       foundUser.reason = req.body.reason;
+      foundUser.upload = 
+        (req.file.filename != undefined)? req.file.filename : '';
+      foundUser.uploadType = 
+        (req.file.mimetype != undefined)? req.file.mimetype : '';
       console.log("Info saved");
     }
     foundUser.save(function(err){
@@ -145,6 +161,8 @@ app.post('/submit', function(req, res) {
   })  
   // console.log(req.body);
 });
+
+
 
 var otp;
 app.post("/otp", function(req,res){
