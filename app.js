@@ -90,7 +90,7 @@ app.post("/login", function (req, res) {
         // res.render("form.ejs");
         if (foundUser[0].password === pwd) {
           console.log("Password matches and he will be logged in");
-          res.render("request.ejs");
+          res.render('viewdata.ejs', {data : foundUser[0]});
         } 
         else {
             console.log(foundUser);
@@ -138,6 +138,7 @@ app.post('/submit', function(req, res) {
       }
       else{
         console.log("Details are modified successfully");
+        res.render('viewdata.ejs', {data : foundUser});
       }
     })
   })  
