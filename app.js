@@ -103,7 +103,13 @@ app.post("/login", function (req, res) {
         // res.render("form.ejs");
         if (foundUser[0].password === pwd) {
           console.log("Password matches and he will be logged in");
-          res.render('viewdata.ejs', {data : foundUser[0]});
+          if(foundUser[0].fname == ""){
+            res.render("request.ejs");
+          }
+          else{
+            res.render('viewdata.ejs', {data : foundUser[0]});
+          }
+          
         } 
         else {
             console.log(foundUser);
@@ -148,6 +154,7 @@ app.post('/submit', upload.single('formFile'), function(req, res) {
       foundUser.uploadType = 
         (req.file.mimetype != undefined)? req.file.mimetype : '';
       console.log("Info saved");
+      console.log(req.body);
     }
     foundUser.save(function(err){
       if(err){
@@ -253,7 +260,7 @@ app.post("/pwdreset", function(req,res){
     res.render('reset.ejs', {msg: "Invalid OTP"});
   }
 })
-// The server will listen on port 3000
+// The server will listen on port 3000 on localhost and random port when hosted online
 app.listen(process.env.PORT||3000, function () {
   console.log("Server running on port 3000");
 });
