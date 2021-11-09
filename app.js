@@ -34,13 +34,13 @@ var upload = multer({ storage: storage });
 
 
 // Connecting to local 'ADP-Project' datbase
-mongoose.connect("mongodb://localhost:27017/ADP-Project", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-console.log("Debug : Database ID : ", String(process.env.PASS));
+// mongoose.connect("mongodb://localhost:27017/ADP-Project", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+// console.log("Debug : Database ID : ", String(process.env.PASS));
 // Use below line in deployment environment, with a specific database connection
-// mongoose.connect(String(process.env.PASS),{ useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect(String(process.env.PASS),{ useNewUrlParser: true , useUnifiedTopology: true});
 
 
 // Creating a database schema
