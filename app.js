@@ -26,19 +26,21 @@ var storage = multer.diskStorage({
     cb(null, 'uploaded_docs/')
   },
   filename: function (req, file, cb) {
-    cb(null, req.body.eaddress.split('@')[0] + '__' + String(Date.now()) + 
-             '.' + file.mimetype.split('/')[1]);
+    cb(null, req.body.rollno + '__' + String(Date.now()) + 
+              '.' + file.mimetype.split('/')[1]);
   }
 })
 var upload = multer({ storage: storage });
 
 
-// Connecting to 'ADP-Project' datbase
-// mongoose.connect("mongodb://localhost:27017/ADP-Project", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-mongoose.connect(String(process.env.PASS),{ useNewUrlParser: true , useUnifiedTopology: true});
+// Connecting to local 'ADP-Project' datbase
+mongoose.connect("mongodb://localhost:27017/ADP-Project", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+console.log("Debug : Database ID : ", String(process.env.PASS));
+// Use below line in deployment environment, with a specific database connection
+// mongoose.connect(String(process.env.PASS),{ useNewUrlParser: true , useUnifiedTopology: true});
 
 
 // Creating a database schema
@@ -56,7 +58,8 @@ const userSchema = new mongoose.Schema({
   address : {type : String, default : ""},
   city : {type : String, default : ""},
   state : {type : String, default : ""},
-  eaddress : {type : String, default : ""},
+  rollno : {type : String, default : ""},
+  program : {type : String, default : ""},
   phone : {type : Number, default : 0},
   inlineRadioOptions : {type : String, default : ""},
   date1 : {type : Date, default :"2000-11-11"},
@@ -143,7 +146,8 @@ app.post('/submit', upload.single('formFile'), function(req, res) {
       foundUser.address = req.body.address;
       foundUser.city = req.body.city;
       foundUser.state = req.body.state;
-      foundUser.eaddress = req.body.eaddress;
+      foundUser.rollno = req.body.rollno;
+      foundUser.program = req.body.program;
       foundUser.phone = req.body.phone;
       foundUser.inlineRadioOptions = req.body.inlineRadioOptions;
       foundUser.date1 = req.body.date1;
@@ -189,6 +193,8 @@ app.post("/otp", function(req,res){
     else{
       if(foundUser.length === 1){
         async function main() {
+          /* IMPORTANT : Configure the password in the development environment's
+           variables. Authentication will fail otherwise. The file is not tracked in git */
           // create reusable transporter object using the default SMTP transport
           let transporter = nodemailer.createTransport({
           host: "smtp-mail.outlook.com",

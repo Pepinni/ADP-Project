@@ -69,11 +69,49 @@
               <label for="state" class="form-label">State<span class="text-danger">&nbsp;*</span></label>
               <input id="state" class="form-control" type="text" name="state" placeholder="State" required maxlength="50"/>
             </div>
-            <div class="col-sm-6">
-              <label for="eaddress" class="form-label">Email Address<span class="text-danger">&nbsp;*</span></label>
-              <input id="eaddress" class="form-control" type="email" name="eaddress" placeholder="Email Address" maxlength="100" required/>
+            <div class="col-md-3">
+              <label for="rollno" class="form-label">Roll Number<span class="text-danger">&nbsp;*</span></label>
+              <input id="rollno" class="form-control" type="text" name="rollno" placeholder="X00000" maxlength="8" required/>
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-3">
+              <label for="program" class="form-label">Program<span class="text-danger">&nbsp;*</span></label>
+              <select class="form-select" id="program" name="program">
+                <optgroup>
+                  <option value="BTech-MTech BioE">BTech-MTech BioE</option>
+                  <option value="BTech CE">BTech CE</option>
+                  <option value="BTech CSE">BTech CSE</option>
+                  <option value="BTech DSE">BTech DSE</option>
+                  <option value="BTech EE">BTech EE</option>
+                  <option value="BTech EP">BTech EP</option>
+                  <option value="BTech ME">BTech ME</option>
+                </optgroup>
+                <optgroup>
+                  <option value="MSc Phys">MSc Phys</option>
+                  <option value="MSc Chem">MSc Chem</option>
+                  <option value="MSc Math">MSc Math</option>
+                  <option value="MA Development">MA Development</option>
+                </optgroup>
+                <optgroup>
+                  <option value="MTech Bio">MTech Bio</option>
+                  <option value="MTech CSE">MTech CSE</option>
+                  <option value="MTech Communications">MTech Communications</option>
+                  <option value="MTech Fluid & Thermal">MTech Fluid & Thermal</option>
+                  <option value="MTech Materials">MTech Materials</option>
+                  <option value="MTech Mech">MTech Mech</option>
+                  <option value="MTech Power Elec.">MTech Power Elec.</option>
+                  <option value="MTech Structural">MTech Structural</option>
+                  <option value="MTech VLSI">MTech VLSI</option>
+                </optgroup>
+                <optgroup>
+                  <option value="PhD SCEE">PhD SCEE</option>
+                  <option value="PhD SE">PhD SE</option>
+                  <option value="PhD SBS">PhD SBS</option>
+                  <option value="PhD SHSS">PhD SHSS</option>
+                  <option value="iPhD Phys">iPhD Phys</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-6">
               <label for="phone" class="form-label">Phone<span class="text-danger">&nbsp;*</span></label>
               <input id="phone" class="form-control" type="tel" name="phone" placeholder="Phone Number" maxlength="20" required/>
             </div>
