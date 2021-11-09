@@ -1,6 +1,5 @@
 // Requiring the necessary libraries
 require("dotenv").config();
-const session = require("express-session");
 const express = require("express");
 const ejs = require("ejs");
 const nodemailer = require("nodemailer");
@@ -78,7 +77,7 @@ var uName;
 /////////// All the access and redirect routes below////////////////
 ///////////////////////////////////////////////////////////////////
 
-app.get("/", function (req, res) {
+app.get("/", function (req, res) { //login
   res.render("index_login.ejs", {msg:""});
 });
 
@@ -89,6 +88,7 @@ app.get("/otp", function(req,res){
 app.get('/reset', function(req,res){
   res.render('reset.ejs', {msg : ""});
 })
+
 
 app.post("/login", function (req, res) {
   uName = req.body.email;
@@ -172,7 +172,6 @@ app.post('/submit', upload.single('formFile'), function(req, res) {
   })  
   // console.log(req.body);
 });
-
 
 
 var otp;
