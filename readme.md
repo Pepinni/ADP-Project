@@ -1,7 +1,21 @@
-This is our private repo for ADP project.
-Some guidelines
-1. Create a developer branch and always create a pull request from that only
-2. If two or more people are working on the same files always fetch and merge the upstream
-3. Always add meaningful comments and commit messages.
-4. Do not create decoy pull requests, means if your present PR is not merged and you make new changes, the present PR will contain your new commits as well so you don't need new PR. 
-We all are learning git/github right now but these are some of the most important guidelines to maintain a neat workflow.
+## Student Returning Scheduler
+
+### Project by Group 6
+
+##### CS207, Applied Databases Practicum
+##### IIT Mandi, Nov 2021
+---------
+
+### Execution Instructions
+---------
+
+1. Ensure that NodeJS and MongoDB are installed on your system. More OS/system specific information and resources can be obtained from their official websites : 
+[NodeJS](https://nodejs.org/en/download/) and 
+[MongoDB](https://docs.mongodb.com/manual/administration/install-community/) 
+
+2. Start up the MongoDB server (this is also OS specific, instructions are provided at the same link above) so that the database is online (By default, at the URL `localhost:27017`).
+
+3. *This step is not essential* <br>
+Open the top-level directory of our project in which the code files are present (`app.js`, etc) and create a `.env` file here if it doesn't exist. This is just used to store the authentication details for sending an email (key : `mailPASS`), and an alternate (remote) database link (key : `PASS`), if the localhost installation is not used. 
+
+4. Run ```node app.js``` from the system command-line/terminal.
